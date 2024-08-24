@@ -79,6 +79,4 @@ Este projeto é uma aplicação que visa ajudar os usuários a melhorar seu bem-
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-## Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
