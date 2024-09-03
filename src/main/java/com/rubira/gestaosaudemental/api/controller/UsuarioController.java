@@ -41,7 +41,7 @@ public class UsuarioController {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         // Obter o histórico emocional do usuário. Implementar a lógica aqui.
-        List<DadosEstadoEmocional> historico = List.of(new DadosEstadoEmocional(LocalDate.now(), D));
+        List<DadosEstadoEmocional> historico = List.of(new DadosEstadoEmocional(LocalDate.now(), usuario));
         return ResponseEntity.ok(historico);
     }
 
