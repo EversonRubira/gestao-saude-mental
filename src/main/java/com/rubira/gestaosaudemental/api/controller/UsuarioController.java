@@ -36,14 +36,17 @@ public class UsuarioController {
     }
 
     @GetMapping("/historico-emocional/{id}")
-    public ResponseEntity<List<DadosEstadoEmocional>> getHistoricoEmocional(@PathVariable Long id) {
-        Usuario usuario = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+public ResponseEntity<List<DadosEstadoEmocional>> getHistoricoEmocional(@PathVariable Long id) {
+    Usuario usuario = repository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        // Obter o histórico emocional do usuário. Implementar a lógica aqui.
-        List<DadosEstadoEmocional> historico = List.of(new DadosEstadoEmocional(LocalDate.now(), usuario));
-        return ResponseEntity.ok(historico);
-    }
+    List<DadosEstadoEmocional> historico = usuario.getHistoricoEmocional().stream()
+            .map(h -> new DadosEstadoEmocional(h.getData(), h.getEstadoEmocional(), h.getDescricaoAtividade()))
+            .toList();
+
+    return ResponseEntity.ok(historico);
+}
+
 
     @GetMapping("/atividades/{id}")
     public ResponseEntity<List<DadosAtividade>> getAtividadesRealizadas(@PathVariable Long id) {
