@@ -1,4 +1,4 @@
-package com.rubira.gestaosaudemental.api.usuario;
+package com.rubira.gestaosaudemental.api.domain.usuario;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
@@ -21,6 +23,7 @@ public class Usuario {
     private Long id;
     private String nome;
     private String email;
+    private String senha;
     private LocalDate dataNascimento;
     private String atividadeRealizada;
     private String observacoesGerais;
@@ -30,6 +33,10 @@ public class Usuario {
     private EstadoEmocional estadoEmocional;
 
     private Boolean ativo;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<HistoricoEmocional> historicoEmocional = new ArrayList<>();
+
 
 
     public Usuario(DadosCadastroUsuario dados) {
@@ -58,4 +65,9 @@ public class Usuario {
     public void excluir() {
         this.ativo = false;
     }
+
+    public List<HistoricoEmocional> getHistoricoEmocional() {
+        return this.historicoEmocional;
+    }
+
 }

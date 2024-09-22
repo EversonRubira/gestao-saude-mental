@@ -1,4 +1,4 @@
-package com.rubira.gestaosaudemental.api.usuario;
+package com.rubira.gestaosaudemental.api.domain.usuario;
 
 public enum EstadoEmocional {
 

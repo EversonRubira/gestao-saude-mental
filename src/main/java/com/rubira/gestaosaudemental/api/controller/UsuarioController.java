@@ -1,6 +1,6 @@
 package com.rubira.gestaosaudemental.api.controller;
 
-import com.rubira.gestaosaudemental.api.usuario.*;
+import com.rubira.gestaosaudemental.api.domain.usuario.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,8 +30,7 @@ public class UsuarioController {
 
     @GetMapping("/perfil/{id}")
     public ResponseEntity<DadosPerfilUsuario> getPerfilUsuario(@PathVariable Long id) {
-        Usuario usuario = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        var usuario = repository.getReferenceById(id);
         return ResponseEntity.ok(new DadosPerfilUsuario(usuario));
     }
 
@@ -68,9 +67,9 @@ public ResponseEntity<List<DadosEstadoEmocional>> getHistoricoEmocional(@PathVar
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
         Usuario usuario = repository.getReferenceById(id);
         usuario.excluir();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Usuário inativado com sucesso!");
     }
 }

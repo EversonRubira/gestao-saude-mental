@@ -1,4 +1,4 @@
-package com.rubira.gestaosaudemental.api.usuario;
+package com.rubira.gestaosaudemental.api.domain.usuario;
 
 
 public record DadosPerfilUsuario(Long id, String nome, String email, String observacoesGerais  ) {

@@ -1,6 +1,4 @@
-package com.rubira.gestaosaudemental.api.usuario;
-
-import java.time.LocalDate;
+package com.rubira.gestaosaudemental.api.domain.usuario;
 
 public record DadosDetalhamentoUsuario(
         Long id,

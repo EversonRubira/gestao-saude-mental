@@ -1,18 +1,26 @@
-package com.rubira.gestaosaudemental.api.usuario;
+package com.rubira.gestaosaudemental.api.domain.usuario;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import java.time.LocalDate;
 
 @Entity
 public class AtividadeUsuario {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter
     private String descricao;
 
+    @Getter
     private LocalDate data;
+
+    @Getter
+    @Enumerated(EnumType.STRING)
+    private EstadoEmocional estadoEmocional;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -21,18 +29,11 @@ public class AtividadeUsuario {
     // Construtor padrão
     public AtividadeUsuario() {}
 
-    public AtividadeUsuario(String descricao, LocalDate data, Usuario usuario) {
+    // Construtor completo
+    public AtividadeUsuario(String descricao, LocalDate data, EstadoEmocional estadoEmocional, Usuario usuario) {
         this.descricao = descricao;
         this.data = data;
+        this.estadoEmocional = estadoEmocional;
         this.usuario = usuario;
-    }
-
-    // Getters
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public LocalDate getData() {
-        return data;
     }
 }
